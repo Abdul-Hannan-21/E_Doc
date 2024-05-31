@@ -122,7 +122,7 @@ $result = $stmt->get_result();
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="index.html">MY DOC</a>
+            <a class="navbar-brand" href="index.html">E Doc</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -160,7 +160,7 @@ $result = $stmt->get_result();
     </nav>
 
     <div class="intro">
-        <h1 class="intro"><b>Welcome To My DOC!</b></h1>
+        <h1 class="intro"><b>Welcome To E Doc!</b></h1>
     </div>
 
     <main class="container mt-4">

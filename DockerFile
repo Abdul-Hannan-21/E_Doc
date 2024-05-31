@@ -1,4 +1,16 @@
-FROM docker/whalesay:latest
-LABEL Name=mydoc Version=0.0.1
-RUN apt-get -y update && apt-get install -y fortunes
-CMD ["sh", "-c", "/usr/games/fortune -a | cowsay"]
+FROM php:apache
+
+# Install MySQLi extension
+RUN docker-php-ext-install mysqli
+
+# Enable Apache rewrite module
+RUN a2enmod rewrite
+
+# Copy your PHP files into the container
+COPY . /var/www/html/
+
+# Set permissions for Apache to access the files
+RUN chown -R www-data:www-data /var/www/html/
+
+# Expose port 80
+EXPOSE 80

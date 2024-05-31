@@ -1,8 +1,8 @@
 version: '3.4'
 
 services:
-  mydoc:
-    image: mydoc
+  edoc:
+    image: edoc
     build:
       context: .
       dockerfile: ./Dockerfile

@@ -18,7 +18,7 @@ if(!isset($_SESSION['valid'])){
 <body style="background-color: #f4623a;">
     <div class="nav" style="background: transparent;">
         <div class="logo">
-            <p><a href="index.html " style="color: white;">My DOC</a></p>
+            <p><a href="index.html " style="color: white;">E Doc</a></p>
         </div>
 
         <div class="right-links">

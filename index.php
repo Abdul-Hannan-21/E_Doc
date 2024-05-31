@@ -1,5 +1,5 @@
 <?php 
-   session_start();
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,7 +33,6 @@
                 if(is_array($row) && !empty($row)){
                     $_SESSION['valid'] = $row['Email'];
                     $_SESSION['username'] = $row['Username'];
-                    $_SESSION['age'] = $row['Age'];
                     $_SESSION['id'] = $row['Id'];
                 }else{
                     echo "<div class='message'>

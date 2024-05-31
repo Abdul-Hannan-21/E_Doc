@@ -1,8 +1,37 @@
 version: '3.4'
 
 services:
-  mydoc:
-    image: mydoc
-    build:
-      context: .
-      dockerfile: ./Dockerfile
+  www:
+    image: php:apache
+    volumes:
+      - ./:/var/www/html
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - db
+
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: doctors
+      MYSQL_USER: user
+      MYSQL_PASSWORD: userpassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - "./db:/docker-entrypoint-initdb.d" # Initialization scripts
+      - "db_data:/var/lib/mysql"  # Mount the named volume for persistent data
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: rootpassword
+    ports:
+      - "8080:80"
+
+volumes:
+  db_data:
