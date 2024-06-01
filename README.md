@@ -5,7 +5,7 @@ E-Doc is a specialized platform designed for the medical community to manage pat
 ## Features
 
 - **Patient Record Management**: Every Doctor keep the electronic health records (EHR) for their patient separately.
-- **Online Video and Chat**: Talk to patients through video calls and chat.
+- **Online Video and Chat**: Communicate with patients through video calls and chat (in progress)
 - **User-Friendly Interface**: Easy to use for  doctors.
 - **Secure Data Handling**: Keeps all patient data safe and private.
 
