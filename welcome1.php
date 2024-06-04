@@ -222,6 +222,11 @@ if (mysqli_num_rows($query_run) > 0) {
                     <form action="code.php" method="POST" class="d-inline">
                         <button type="submit" name="delete_patient" value="<?= $patient['id']; ?>&user_id=<?= $patient['user_id']; ?>" class="btn btn-delete btn-sm">Delete</button>
                     </form>
+                    <form action="send_message.php" method="GET" class="d-inline">
+                        <input type="hidden" name="patient_id" value="<?= $patient['id']; ?>">
+                        <input type="hidden" name="doctor_id" value="<?= $_SESSION['id']; ?>">
+                        <button type="submit" class="btn btn-view btn-sm">Send Message</button>
+                    </form>
                 </td>
             </tr>
 <?php
@@ -231,7 +236,6 @@ if (mysqli_num_rows($query_run) > 0) {
     echo "<tr><td colspan='7'>No Record Found</td></tr>";
 }
 ?>
-                                    ?>
                                 </tbody>
                             </table>
                         </div>

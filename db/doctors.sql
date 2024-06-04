@@ -58,7 +58,6 @@ CREATE TABLE `users` (
   `Id` int(11) NOT NULL,
   `Username` varchar(50) NOT NULL,
   `Email` varchar(50) NOT NULL,
-  `Age` int(11) NOT NULL,
   `Password` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -66,7 +65,7 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`Id`, `Username`, `Email`, `Age`, `Password`) VALUES
+INSERT INTO `users` (`Id`, `Username`, `Email`,  `Password`) VALUES
 (1, 'doc', 'doc@gmail.com', 0, '123'),
 (2, 'my', 'my@gmail.com', 0, '321'),
 (3, 'newdoc', 'newdoc@gmail.com', 0, '123');

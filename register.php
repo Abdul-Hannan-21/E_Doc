@@ -31,7 +31,7 @@
          }
          else{
 
-            mysqli_query($con,"INSERT INTO users(Username,Email,Password) VALUES('$username','$email','$password')") or die("Erroe Occured");
+            mysqli_query($con,"INSERT INTO users(Username,Email,Password) VALUES('$username','$email','$password')") or die("Error Occured");
 
             echo "<div class='message'>
                       <p>Registration successfully!</p>

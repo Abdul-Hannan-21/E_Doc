@@ -2,21 +2,27 @@
 session_start();
 require 'dbcon.php';
 
+ob_start(); // Start output buffering
+
 function sanitizeFileName($fileName) {
     // Remove spaces and special characters from the file name
     $fileName = preg_replace("/[^a-zA-Z0-9.]/", "_", $fileName);
     return $fileName;
 }
+
 $user_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0; // initialize user_id
-if ($_GET['user_id'] != $user_id) {
+
+if (isset($_GET['user_id']) && $_GET['user_id'] != $user_id) {
     // Redirect or display an error message
-}
-function displayErrorMessage($message) {
-    // Display error messages to the user
-    echo "Error: $message";
+    header("Location: error_page.php"); // or any error handling page
+    exit;
 }
 
-// Function to handle file uploads
+function displayErrorMessage($message) {
+    // Store error messages in session to display later
+    $_SESSION['error_message'] = $message;
+}
+
 function handleFileUpload($file, $uploadDirectory) {
     $originalFileName = $file['name'];
     $image_tmp_name = $file['tmp_name'];
@@ -36,11 +42,11 @@ function handleFileUpload($file, $uploadDirectory) {
             return $image_name;
         } else {
             // Error in uploading image
-            echo "Error: Unable to move the uploaded file.";
+            displayErrorMessage("Unable to move the uploaded file.");
             return false;
         }
     } else {
-        echo "Error: Invalid file type. Only JPG, JPEG, and PNG files are allowed.";
+        displayErrorMessage("Invalid file type. Only JPG, JPEG, and PNG files are allowed.");
         return false;
     }
 }
@@ -71,7 +77,7 @@ if (isset($_POST['update_patient'])) {
     $email = $_POST['email'];
     $phone = $_POST['phone'];
     $diagnosis = $_POST['Diagnosis'];
-    $current_image = $_POST['current_image'];
+    $current_image = isset($_POST['current_image']) ? $_POST['current_image'] : ''; // Ensure current_image is set
 
     $image_name = $current_image; // Default to current image
 
@@ -103,14 +109,10 @@ if (isset($_POST['update_patient'])) {
 $query = "SELECT patients.*, users.Username as user_name FROM patients INNER JOIN users ON patients.user_id = users.Id WHERE patients.user_id = ?";
 $stmt = $con->prepare($query);
 $stmt->bind_param("i", $user_id);
-$user_id = $_SESSION['id'];
 $stmt->execute();
 $result = $stmt->get_result();
-// Handle save operation
-if ($_GET['user_id'] != $user_id) {
-    // Redirect or display an error message
-}
 
+// Handle save operation
 if (isset($_POST['save_patient'])) {
     $name = $_POST['name'];
     $email = $_POST['email'];
@@ -129,9 +131,12 @@ if (isset($_POST['save_patient'])) {
         }
     }
 
+    // Ensure image_name is not null
+    $image_name = $image_name ?: 'default_image.jpg'; // Use a default image if no image is uploaded
+
     $query = "INSERT INTO patients (name, email, phone, Diagnosis, image_name, user_id) VALUES (?, ?, ?, ?, ?, ?)";
     $stmt = $con->prepare($query);
-    $stmt->bind_param("ssssss", $name, $email, $phone, $diagnosis, $image_name, $user_id); // include user_id in query
+    $stmt->bind_param("sssssi", $name, $email, $phone, $diagnosis, $image_name, $user_id);
     $stmt->execute();
 
     if ($stmt->affected_rows > 0) {
@@ -143,4 +148,6 @@ if (isset($_POST['save_patient'])) {
     header("Location: welcome1.php");
     exit(0);
 }
+
+ob_end_flush(); // Flush the output buffer
 ?>
