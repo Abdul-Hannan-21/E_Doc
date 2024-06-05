@@ -22,7 +22,7 @@ E-Doc is a specialized platform designed for the medical community to manage pat
 1. **Install Docker:** Make sure Docker is installed on your machine.
 2. **Clone the Repository:** Clone the E-Doc repository from GitHub.
     ```
-    git clone https://github.com/your-username/e-doc.git
+    git clone https://github.com/Abdul-Hannan-21/e-doc.git
     ```
 3. **Navigate to the Directory:**
     ```
@@ -40,19 +40,25 @@ E-Doc is a specialized platform designed for the medical community to manage pat
 2. **Setup Environment:** Codespaces will automatically set up the environment based on the repository configuration.
 3. **Run E-Doc:** Follow the instructions provided in the repository to start the application within Codespaces.
 
-## Configuration
+## Troubleshooting
 
-You can configure the application using environment variables. Here are some of the common settings:
+If you encounter any issues while using E-Doc, here are some steps you can take to troubleshoot:
 
-- `DATABASE_URL`: The URL of your database.
-- `PORT`: The port on which the application will run.
+### Application Not Loading Properly
 
-Example `.env` file:
+- **Issue:** Sometimes the application may not load correctly on the first attempt.
+
+- **Solution:** If you see an error message or the page isn’t loading as expected, try refreshing your browser (`F5` or `Ctrl + R`). This can often resolve temporary issues with the application loading process.
+
+### Docker Container Issues
+
+- **Issue:** Docker containers (`www`, `db`, `phpmyadmin`) not starting or encountering errors.
+
+- **Solution:** Check the Docker logs to identify any errors:
+  ```bash
+  docker-compose logs
 
 
-## Usage
-
-Once you have the application running, you can start managing patient records and scheduling online consultations. The interface is intuitive and easy to navigate, allowing you to focus on providing the best care for your patients.
 
 ## Contribution
 
