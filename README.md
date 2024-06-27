@@ -66,3 +66,4 @@ E-Doc was developed by:
 
 - Abdul Mannan
 - Abdul Hannan
+- Yadwinder Singh
